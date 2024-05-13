@@ -8,7 +8,13 @@ export const connectToDb = async () => {
 
   try {
       if (connection.isConnected) return;
-      const db = await mongoose.connect(process.env.MONGODB_URI!);
+
+      const dbUri = process.env.MONGODB_URI;
+      if (!dbUri) {
+        throw new Error("Database connection URI is undefined");
+      }
+
+      const db = await mongoose.connect(dbUri);
       connection.isConnected = db.connections[0].readyState === 1;
   } catch (error) {
       throw new Error(error instanceof Error ? error.message : 'Cannot connect to DataBase');
