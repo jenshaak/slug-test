@@ -7,7 +7,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return [{ id: "1" }];
+  return [{ id: "6641c7e553cd44a735111e40" }];
 }
 
 export default function IdPage({ params }: Props) {
